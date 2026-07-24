@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCAN Energy and Projects Limited | Energy, Engineering & Field Services</title>
+  <meta name="description" content="OCAN Energy and Projects Limited is a private engineering and field service firm based in Port Harcourt, Nigeria, delivering project management, petroleum engineering, facility maintenance, safety management, and construction services across the oil, gas, and energy sectors." />
+  <meta name="keywords" content="OCAN Energy, OCAN Energy and Projects Limited, petroleum engineering Nigeria, project management Port Harcourt, facility maintenance, HSE management, construction services, electrical maintenance, plumbing, tiling, interlocking" />
+  <meta name="author" content="OCAN Energy and Projects Limited" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="OCAN Energy and Projects Limited" />
+  <meta property="og:description" content="Powering Nigeria's Energy and Infrastructure Future." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ocanenergy.com/" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=1600&q=80" />
+  <meta property="og:locale" content="en_NG" />
+  <meta name="theme-color" content="#0B1E33" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="manifest" href="./site.webmanifest" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    :root {
+      --navy: #0B1E33;
+      --navy-2: #102A45;
+      --charcoal: #15202B;
+      --gold: #D9A441;
+      --gold-dark: #B98622;
+      --white: #FFFFFF;
+      --off-white: #F7F8FA;
+      --muted: #64748B;
+      --line: #E2E8F0;
+      --shadow: 0 22px 60px rgba(11, 30, 51, 0.14);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--charcoal);
+      background: var(--white);
+      line-height: 1.6;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    :focus-visible { outline: 3px solid rgba(217, 164, 65, .72); outline-offset: 3px; }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin-inline: auto;
+    }
+    .section { padding: 72px 0; }
+    .section-light { background: var(--off-white); }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--gold-dark);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .section-title {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(2rem, 6vw, 3.25rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+    .section-copy {
+      margin: 16px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 50;
+      transition: background .25s ease, box-shadow .25s ease, padding .25s ease;
+    }
+    .site-header.is-scrolled {
+      background: rgba(11, 30, 51, .96);
+      box-shadow: 0 12px 36px rgba(11, 30, 51, .2);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 84px;
+      padding: 10px 0;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      color: var(--white);
+      line-height: 1;
+      margin-right: auto;
+    }
+    .brand-logo {
+      display: block;
+      height: clamp(58px, 7vw, 88px);
+      width: auto;
+      max-width: clamp(170px, 24vw, 240px);
+      object-fit: contain;
+      flex-shrink: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+    .brand-wordmark {
+      display: none;
+    }
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 26px;
+      color: rgba(255, 255, 255, .82);
+      font-size: .94rem;
+      font-weight: 700;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .menu-btn {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: var(--radius);
+      color: var(--white);
+      background: rgba(255,255,255,.08);
+      cursor: pointer;
+    }
+    .mobile-menu {
+      display: grid;
+      max-height: 0;
+      overflow: hidden;
+      background: rgba(11, 30, 51, .98);
+      transition: max-height .28s ease;
+    }
+    .mobile-menu.open { max-height: 320px; }
+    .mobile-menu a {
+      padding: 14px 18px;
+      color: rgba(255,255,255,.82);
+      border-top: 1px solid rgba(255,255,255,.08);
+      font-weight: 700;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      color: var(--white);
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(11, 30, 51, .94), rgba(11, 30, 51, .76), rgba(11, 30, 51, .48)),
+        url("https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=2200&q=82") center / cover;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 9px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .hero-inner {
+      position: relative;
+      padding: 132px 0 86px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding: 9px 13px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: var(--radius);
+      color: var(--gold);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      max-width: 930px;
+      margin: 0;
+      font-size: clamp(2.65rem, 9vw, 5.65rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+    .hero p {
+      max-width: 820px;
+      margin: 24px 0 0;
+      color: rgba(255,255,255,.82);
+      font-size: clamp(1rem, 2.4vw, 1.22rem);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 13px 22px;
+      border: 0;
+      border-radius: var(--radius);
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform .22s ease, background .22s ease, color .22s ease, box-shadow .22s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      box-shadow: 0 18px 40px rgba(217, 164, 65, .24);
+    }
+    .btn-primary:hover { background: var(--white); }
+    .btn-secondary {
+      background: rgba(255,255,255,.1);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,.24);
+    }
+    .hero-card {
+      display: none;
+      position: absolute;
+      right: 6vw;
+      bottom: 72px;
+      width: 310px;
+      padding: 22px;
+      background: rgba(255,255,255,.11);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: var(--radius);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .split {
+      display: grid;
+      gap: 36px;
+      align-items: center;
+    }
+    .about-panel {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--gold);
+      background: var(--off-white);
+      border-radius: var(--radius);
+    }
+    .about-panel strong { color: var(--navy); }
+    .about-image {
+      position: relative;
+      min-height: 360px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: url("https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80") center / cover;
+    }
+    .about-image span {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      padding: 14px 16px;
+      background: var(--navy);
+      color: var(--white);
+      border-left: 4px solid var(--gold);
+      border-radius: var(--radius);
+      font-weight: 900;
+    }
+
+    .services-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 34px;
+    }
+    .service-card {
+      min-height: 208px;
+      padding: 24px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 28px rgba(11, 30, 51, .06);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(217, 164, 65, .55);
+      box-shadow: var(--shadow);
+    }
+    .service-icon {
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      margin-bottom: 18px;
+      color: var(--gold);
+      background: rgba(217, 164, 65, .12);
+      border-radius: var(--radius);
+      font-size: 1.35rem;
+    }
+    .service-card h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 1.12rem;
+    }
+    .service-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 34px;
+    }
+    .project-card {
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      box-shadow: 0 14px 34px rgba(0,0,0,.12);
+    }
+    .project-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      filter: saturate(.96);
+      transition: transform .35s ease;
+    }
+    .project-card:hover img { transform: scale(1.05); }
+    .project-caption {
+      padding: 14px 16px;
+      color: var(--navy);
+      font-weight: 900;
+      background: var(--white);
+    }
+    .projects-section {
+      background: linear-gradient(180deg, var(--navy), var(--navy-2));
+      color: var(--white);
+    }
+    .projects-section .section-title { color: var(--white); }
+    .projects-section .section-copy { color: rgba(255,255,255,.72); }
+
+    .contact-grid {
+      display: grid;
+      gap: 24px;
+      margin-top: 34px;
+    }
+    .contact-card, .enquiry-form {
+      padding: 24px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 28px rgba(11, 30, 51, .06);
+    }
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .contact-item {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+    .contact-item i {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      color: var(--gold);
+      background: rgba(217, 164, 65, .12);
+      border-radius: var(--radius);
+    }
+    .contact-item strong {
+      display: block;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .contact-item span, .contact-note {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .contact-note {
+      margin-top: 18px;
+      padding: 14px;
+      background: #FFF7E8;
+      border: 1px solid rgba(217, 164, 65, .34);
+      border-radius: var(--radius);
+    }
+    .form-row {
+      display: grid;
+      gap: 14px;
+    }
+    .field { display: grid; gap: 7px; }
+    .field label {
+      color: var(--navy);
+      font-size: .92rem;
+      font-weight: 800;
+    }
+    .field input, .field textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 13px 14px;
+      background: var(--white);
+      color: var(--charcoal);
+    }
+    .field textarea {
+      min-height: 138px;
+      resize: vertical;
+    }
+    .form-comment {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .site-footer {
+      padding: 44px 0 24px;
+      color: rgba(255,255,255,.72);
+      background: #071421;
+    }
+    .footer-grid {
+      display: grid;
+      gap: 28px;
+    }
+    .footer-title {
+      margin: 0 0 12px;
+      color: var(--white);
+      font-size: 1rem;
+    }
+    .footer-links {
+      display: grid;
+      gap: 8px;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .socials {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .socials span {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      color: var(--white);
+      background: rgba(255,255,255,.08);
+      border-radius: var(--radius);
+    }
+    .copyright {
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      font-size: .9rem;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 640px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 900px) {
+      .section { padding: 96px 0; }
+      .nav-links { display: flex; }
+      .menu-btn, .mobile-menu { display: none; }
+      .split { grid-template-columns: .9fr 1.1fr; }
+      .services-grid { grid-template-columns: repeat(4, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .contact-grid { grid-template-columns: .86fr 1.14fr; }
+      .footer-grid { grid-template-columns: 1.4fr .7fr .9fr 1fr; }
+      .hero-card { display: block; }
+    }
+    @media (min-width: 1180px) {
+      .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .nav { min-height: 74px; padding: 8px 0; }
+      .brand-logo { height: 60px; max-width: 170px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <nav class="nav container" aria-label="Primary navigation">
+      <a class="brand" href="#home" aria-label="OCAN Energy home">
+        <img class="brand-logo" src="assets/images/logo-transparent.png" alt="OCAN Energy logo" />
+      </a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation menu" aria-controls="mobileMenu" aria-expanded="false">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-inner reveal">
+        <p class="hero-badge"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Oil, Gas, Energy & Infrastructure</p>
+        <h1 id="hero-title">Powering Nigeria's Energy and Infrastructure Future</h1>
+        <p>OCAN Energy and Projects Limited is a private engineering and field service firm based in Port Harcourt, Nigeria, delivering project management, petroleum engineering, facility maintenance, and safety management across the oil, gas, and energy sectors. The company also supports clients with building construction, electrical wiring and maintenance, plumbing, and wall and floor finishing services as part of a broader infrastructure capability.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#enquiry">Request a Quote <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          <a class="btn btn-secondary" href="#services">View Services</a>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="Company focus">
+        <p class="eyebrow">Field-Ready Delivery</p>
+        <strong>Engineering support, HSE-led execution, facility maintenance and construction-side services for demanding Nigerian project environments.</strong>
+      </aside>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container split">
+        <div class="about-image reveal" role="img" aria-label="Engineers inspecting a construction site">
+          <span>Port Harcourt, Rivers State</span>
+        </div>
+        <div class="reveal">
+          <p class="eyebrow">About Us</p>
+          <h2 class="section-title">Private engineering and field service support for energy-sector projects.</h2>
+          <p class="section-copy">OCAN Energy and Projects Limited is a private engineering and field service firm based in Port Harcourt, Nigeria. The company operates within the broader oil, gas, and energy sectors, offering project management, petroleum engineering, facility maintenance, and safety management services. Beyond the energy sector, OCAN also delivers building construction, electrical wiring and maintenance, plumbing, and wall and floor finishing services including tiling and interlocking — giving clients a single, reliable partner for both technical field operations and physical infrastructure work.</p>
+          <p class="section-copy">OCAN’s value proposition is practical and field-tested: reliable delivery, safety-first execution, engineering judgment, clear supervision and a commitment to completing work on time.</p>
+          <div class="about-panel">
+            <strong>Verification note:</strong> Port Harcourt location, contact details and company records should be confirmed before launch. Exact office address, director names and phone numbers are left as placeholders because public records did not confirm them.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="services">
+      <div class="container">
+        <div class="reveal">
+          <p class="eyebrow">Services</p>
+          <h2 class="section-title">Engineering, field service and construction capabilities.</h2>
+          <p class="section-copy">A focused engineering and field services offering for project owners, facility managers and energy-sector operators, with construction and facility work delivered as part of the same practical capability.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <span class="service-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></span>
+            <h3>Project Management</h3>
+            <p>Planning, coordination and field supervision for complex technical projects.</p>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-icon"><i class="fa-solid fa-oil-well" aria-hidden="true"></i></span>
+            <h3>Petroleum Engineering</h3>
+            <p>Engineering support for oil, gas and energy-sector operating environments.</p>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></span>
+            <h3>Facility Maintenance</h3>
+            <p>Maintenance services for industrial, energy and building facilities.</p>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-icon"><i class="fa-solid fa-helmet-safety" aria-hidden="true"></i></span>
+            <h3>Safety Management (HSE)</h3>
+            <p>Safety-first site practices, risk controls and HSE support.</p>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-icon"><i class="fa-solid fa-building" aria-hidden="true"></i></span>
+            <h3>Building Construction</h3>
+            <p>Residential, commercial and support-building construction services.</p>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-icon"><i class="fa-solid fa-plug-circle-bolt" aria-hidden="true"></i></span>
+            <h3>Electrical Wiring & Maintenance</h3>
+            <p>Electrical installations, panel work, maintenance and facility power support.</p>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-icon"><i class="fa-solid fa-faucet-drip" aria-hidden="true"></i></span>
+            <h3>Plumbing</h3>
+            <p>Plumbing installation, repair and maintenance for buildings and facilities.</p>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-icon"><i class="fa-solid fa-trowel-bricks" aria-hidden="true"></i></span>
+            <h3>Wall & Floor Finishing</h3>
+            <p>Tiling, interlocking and finishing works for durable project handover.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section projects-section" id="projects">
+      <div class="container">
+        <div class="reveal">
+          <p class="eyebrow">Projects / Gallery</p>
+          <h2 class="section-title">Representative field and facility work.</h2>
+          <p class="section-copy">A look at recent electrical, power systems, and facility maintenance work.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="project-card reveal">
+            <img src="assets/images/electrical-panel-installation.jpg" alt="Electrical technician working on an electrical panel" loading="lazy" />
+            <figcaption class="project-caption">Electrical Panel Installation</figcaption>
+          </figure>
+          <figure class="project-card reveal">
+            <img src="assets/images/meter-installation.jpg" alt="Electrical meter and utility installation" loading="lazy" />
+            <figcaption class="project-caption">Meter Installation</figcaption>
+          </figure>
+          <figure class="project-card reveal">
+            <img src="assets/images/switchgear-commissioning.jpg" alt="Industrial switchgear and control equipment" loading="lazy" />
+            <figcaption class="project-caption">Switchgear Commissioning</figcaption>
+          </figure>
+          <figure class="project-card reveal">
+            <img src="assets/images/solar-installation.jpg" alt="Solar panel array" loading="lazy" />
+            <figcaption class="project-caption">Solar Power Installation</figcaption>
+          </figure>
+          <figure class="project-card reveal">
+            <img src="assets/images/power-rectifier-system.jpg" alt="Industrial power cabinet and maintenance equipment" loading="lazy" />
+            <figcaption class="project-caption">UPS / Rectifier Cabinet</figcaption>
+          </figure>
+          <figure class="project-card reveal">
+            <img src="assets/images/telecom-power-cabinet.jpg" alt="Telecom and facility power infrastructure" loading="lazy" />
+            <figcaption class="project-caption">Telecom Power Cabinet</figcaption>
+          </figure>
+          <figure class="project-card reveal">
+            <img src="assets/images/building-construction.jpg" alt="Building construction site" loading="lazy" />
+            <figcaption class="project-caption">Building Construction</figcaption>
+          </figure>
+          <figure class="project-card reveal">
+            <img src="assets/images/wall-floor-finishing.jpg" alt="Wall and floor finishing work" loading="lazy" />
+            <figcaption class="project-caption">Wall & Floor Finishing</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="contact">
+      <div class="container">
+        <div class="reveal">
+          <p class="eyebrow">Contact / Enquiry</p>
+          <h2 class="section-title">Tell us what your project needs.</h2>
+          <p class="section-copy">Send a project enquiry and the OCAN team can respond with next steps, technical requirements and quotation details once official contact routing is confirmed.</p>
+        </div>
+        <div class="contact-grid">
+          <aside class="contact-card reveal">
+            <h3 class="footer-title" style="color: var(--navy);">Contact Details</h3>
+            <div class="contact-list">
+              <div class="contact-item">
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                <p><strong>Business Email</strong><span>AkariOtu@ocanenergy.com.ng</span></p>
+              </div>
+              <div class="contact-item">
+                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                <p><strong>Location</strong><span>Port Harcourt, Rivers State, Nigeria</span></p>
+              </div>
+              <div class="contact-item">
+                <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                <p><strong>Phone</strong><span>Placeholder - insert confirmed phone number.</span></p>
+              </div>
+              <div class="contact-item">
+                <i class="fa-solid fa-user-tie" aria-hidden="true"></i>
+                <p><strong>Director / Contact Person</strong><span>Placeholder - insert once confirmed. Public records did not return director names or numbers.</span></p>
+              </div>
+            </div>
+            <p class="contact-note">Confirm final domain and email before launch. This site brief uses ocanenergy.com, while the placeholder email uses ocanenergy.com.ng.</p>
+          </aside>
+
+          <form class="enquiry-form reveal" id="enquiry" action="mailto:AkariOtu@ocanenergy.com.ng" method="post" enctype="text/plain">
+            <!-- Static-site fallback: this form uses mailto for now. Swap action/method for Formspree, EmailJS, or a real backend endpoint before launch. -->
+            <div class="form-row">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+            </div>
+            <div class="field" style="margin-top: 14px;">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" />
+            </div>
+            <div class="field" style="margin-top: 14px;">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit" style="margin-top: 18px;">Submit Enquiry <i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
+            <p class="form-comment">Your email app may open after submission because this static version uses a mailto fallback.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#home">
+            <img class="brand-logo" src="assets/images/logo-transparent.png" alt="OCAN Energy logo" />
+          </a>
+          <p>Powering Nigeria's energy and infrastructure future through engineering, field service and construction support.</p>
+          <div class="socials" aria-label="Social media placeholders">
+            <span title="LinkedIn placeholder"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></span>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer-title">Quick Links</h3>
+          <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer-title">Core Services</h3>
+          <div class="footer-links">
+            <a href="#services">Project Management</a>
+            <a href="#services">Petroleum Engineering</a>
+            <a href="#services">Facility Maintenance</a>
+            <a href="#services">Safety Management</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer-title">Contact</h3>
+          <p>AkariOtu@ocanenergy.com.ng</p>
+          <p>Port Harcourt, Rivers State, Nigeria</p>
+          <p>Phone: Placeholder pending confirmation</p>
+        </div>
+      </div>
+      <p class="copyright">© 2026 OCAN Energy and Projects Limited. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('siteHeader');
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const revealItems = document.querySelectorAll('.reveal');
+
+    function handleHeader() {
+      header.classList.toggle('is-scrolled', window.scrollY > 24);
+    }
+
+    window.addEventListener('scroll', handleHeader, { passive: true });
+    handleHeader();
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+      menuBtn.innerHTML = isOpen
+        ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i>'
+        : '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+    });
+
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.innerHTML = '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
+      });
+    }, { threshold: 0.12 });
+
+    revealItems.forEach((item) => observer.observe(item));
+  </script>
+</body>
+</html>

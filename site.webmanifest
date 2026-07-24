@@ -1,0 +1,17 @@
+{
+  "name": "OCAN Energy and Projects Limited",
+  "short_name": "OCAN Energy",
+  "description": "Energy, engineering, field service and construction company website presentation.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0F172A",
+  "theme_color": "#0F172A",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
