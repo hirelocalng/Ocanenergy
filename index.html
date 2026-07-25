@@ -700,8 +700,8 @@
             <p class="contact-note">Confirm final domain and email before launch. This site brief uses ocanenergy.com, while the placeholder email uses ocanenergy.com.ng.</p>
           </aside>
 
-          <form class="enquiry-form reveal" id="enquiry" action="mailto:AkariOtu@ocanenergy.com.ng" method="post" enctype="text/plain">
-            <!-- Static-site fallback: this form uses mailto for now. Swap action/method for Formspree, EmailJS, or a real backend endpoint before launch. -->
+          <form class="enquiry-form reveal" id="enquiry" name="enquiry" data-netlify="true" netlify action="/" method="post" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="form-name" value="enquiry" />
             <div class="form-row">
               <div class="field">
                 <label for="name">Name</label>
@@ -721,7 +721,7 @@
               <textarea id="message" name="message" required></textarea>
             </div>
             <button class="btn btn-primary" type="submit" style="margin-top: 18px;">Submit Enquiry <i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
-            <p class="form-comment">Your email app may open after submission because this static version uses a mailto fallback.</p>
+            <p class="form-comment" id="formMessage" aria-live="polite">We’ll follow up as soon as we can.</p>
           </form>
         </div>
       </div>
@@ -775,6 +775,8 @@
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const revealItems = document.querySelectorAll('.reveal');
+    const enquiryForm = document.getElementById('enquiry');
+    const formMessage = document.getElementById('formMessage');
 
     function handleHeader() {
       header.classList.toggle('is-scrolled', window.scrollY > 24);
@@ -790,6 +792,35 @@
         ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i>'
         : '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
     });
+
+    if (enquiryForm && formMessage) {
+      enquiryForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(enquiryForm);
+        const data = new URLSearchParams(formData);
+
+        try {
+          const response = await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: data.toString()
+          });
+
+          if (response.ok) {
+            enquiryForm.reset();
+            formMessage.textContent = 'Thanks — we’ll be in touch.';
+            formMessage.style.color = 'var(--green)';
+          } else {
+            formMessage.textContent = 'Submission failed. Please try again.';
+            formMessage.style.color = '#b91c1c';
+          }
+        } catch (error) {
+          formMessage.textContent = 'Submission failed. Please try again.';
+          formMessage.style.color = '#b91c1c';
+        }
+      });
+    }
 
     mobileMenu.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
