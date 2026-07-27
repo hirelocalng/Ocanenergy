@@ -12,6 +12,26 @@ function sendJsonResponse($success, $message, $statusCode = 200) {
     exit;
 }
 
+function sendHtmlResponse($message, $statusCode = 200) {
+    http_response_code($statusCode);
+    echo '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Enquiry Submitted</title><style>body{font-family:Arial,sans-serif;line-height:1.5;padding:32px;max-width:640px;margin:0 auto;}a{color:#0f766e;text-decoration:none}</style></head><body><h1>' . htmlspecialchars($message, ENT_QUOTES, 'UTF-8') . '</h1><p><a href="./">Return to the homepage</a></p></body></html>';
+    exit;
+}
+
+function isAjaxRequest() {
+    $requestedWith = $_SERVER['HTTP_X_REQUESTED_WITH'] ?? '';
+    $acceptHeader = $_SERVER['HTTP_ACCEPT'] ?? '';
+    return strtolower($requestedWith) === 'xmlhttprequest' || strpos(strtolower($acceptHeader), 'application/json') !== false;
+}
+
+function sendResponse($success, $message, $statusCode = 200) {
+    if (isAjaxRequest()) {
+        sendJsonResponse($success, $message, $statusCode);
+    }
+
+    sendHtmlResponse($message, $statusCode);
+}
+
 function logContactFailure($message, $details = '') {
     $timestamp = date('c');
     $entry = $timestamp . ' - ' . $message;
@@ -29,12 +49,12 @@ function appendMailLog($subject, $body, $headers, $to) {
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     logContactFailure('Method not allowed.');
-    sendJsonResponse(false, 'Method not allowed.', 405);
+    sendResponse(false, 'Method not allowed.', 405);
 }
 
 if (!function_exists('mail')) {
     logContactFailure('PHP mail() function is unavailable.');
-    sendJsonResponse(false, 'Mail is not available on this server.', 500);
+    sendResponse(false, 'Mail is not available on this server.', 500);
 }
 
 $name = trim($_POST['name'] ?? '');
@@ -44,12 +64,12 @@ $message = trim($_POST['message'] ?? '');
 
 if ($name === '' || $email === '' || $message === '') {
     logContactFailure('Missing required fields.', 'name=' . $name . '; email=' . $email . '; message=' . $message);
-    sendJsonResponse(false, 'Please complete the required fields.', 400);
+    sendResponse(false, 'Please complete the required fields.', 400);
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     logContactFailure('Invalid email address.', $email);
-    sendJsonResponse(false, 'Please provide a valid email address.', 400);
+    sendResponse(false, 'Please provide a valid email address.', 400);
 }
 
 $to = 'AkariOtu@ocanenergy.com.ng';
@@ -63,10 +83,10 @@ $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
 $sent = @mail($to, $subject, $body, $headers, '-f' . $fromAddress);
 if ($sent) {
-    sendJsonResponse(true, 'Thanks — we’ll be in touch.');
+    sendResponse(true, 'Thanks — we’ll be in touch.');
 }
 
 appendMailLog($subject, $body, $headers, $to);
 $reason = 'mail() returned false';
 logContactFailure('mail() failed.', 'to=' . $to . '; from=' . $fromAddress . '; email=' . $email . '; reason=' . $reason);
-sendJsonResponse(false, 'Mail failed: ' . $reason, 500);
+sendResponse(false, 'Mail failed: ' . $reason, 500);

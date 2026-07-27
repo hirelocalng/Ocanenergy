@@ -799,6 +799,10 @@
 
     if (enquiryForm && formMessage) {
       enquiryForm.addEventListener('submit', async (event) => {
+        if (typeof window.fetch !== 'function') {
+          return;
+        }
+
         event.preventDefault();
 
         const formData = new FormData(enquiryForm);
@@ -809,7 +813,8 @@
             method: 'POST',
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
-              'Accept': 'application/json'
+              'Accept': 'application/json',
+              'X-Requested-With': 'XMLHttpRequest'
             },
             body: data.toString()
           });
