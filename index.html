@@ -807,18 +807,26 @@
         try {
           const response = await fetch('contact.php', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Accept': 'application/json'
+            },
             body: data.toString()
           });
 
-          const resultText = await response.text();
+          let result = null;
+          try {
+            result = await response.json();
+          } catch (parseError) {
+            result = null;
+          }
 
-          if (response.ok) {
+          if (response.ok && result && result.success) {
             enquiryForm.reset();
-            formMessage.textContent = resultText || 'Thanks — we’ll be in touch.';
+            formMessage.textContent = result.message || 'Thanks — we’ll be in touch.';
             formMessage.style.color = 'var(--green)';
           } else {
-            formMessage.textContent = resultText || 'Submission failed. Please try again.';
+            formMessage.textContent = result && result.message ? result.message : 'Submission failed. Please try again.';
             formMessage.style.color = '#b91c1c';
           }
         } catch (error) {
