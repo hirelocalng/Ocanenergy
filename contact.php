@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', '0');
+error_reporting(E_ALL);
 header('Content-Type: application/json; charset=UTF-8');
 
 function sendJsonResponse($success, $message, $statusCode = 200) {
@@ -30,6 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     sendJsonResponse(false, 'Method not allowed.', 405);
 }
 
+if (!function_exists('mail')) {
+    logContactFailure('PHP mail() function is unavailable.');
+    sendJsonResponse(false, 'Mail is not available on this server.', 500);
+}
+
 $name = trim($_POST['name'] ?? '');
 $email = trim($_POST['email'] ?? '');
 $phone = trim($_POST['phone'] ?? '');
@@ -51,16 +58,10 @@ $subject = 'New enquiry from ' . $name;
 $body = "Name: $name\nEmail: $email\nPhone: $phone\n\nMessage:\n$message\n";
 $headers = "From: OCAN Energy <{$fromAddress}>\r\n";
 $headers .= "Reply-To: {$email}\r\n";
+$headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-$attemptedMail = [
-    'to' => $to,
-    'subject' => $subject,
-    'body' => $body,
-    'headers' => $headers,
-];
-
-$sent = mail($to, $subject, $body, $headers);
+$sent = @mail($to, $subject, $body, $headers, '-f' . $fromAddress);
 if ($sent) {
     sendJsonResponse(true, 'Thanks — we’ll be in touch.');
 }
