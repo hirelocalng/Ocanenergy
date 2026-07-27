@@ -704,8 +704,7 @@
             </div>
           </aside>
 
-          <form class="enquiry-form reveal" id="enquiry" name="enquiry" data-netlify="true" netlify action="/" method="post" enctype="application/x-www-form-urlencoded">
-            <input type="hidden" name="form-name" value="enquiry" />
+          <form class="enquiry-form reveal" id="enquiry" name="enquiry" action="contact.php" method="post">
             <div class="form-row">
               <div class="field">
                 <label for="name">Name</label>
@@ -806,18 +805,20 @@
         const data = new URLSearchParams(formData);
 
         try {
-          const response = await fetch('/', {
+          const response = await fetch('contact.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: data.toString()
           });
 
+          const resultText = await response.text();
+
           if (response.ok) {
             enquiryForm.reset();
-            formMessage.textContent = 'Thanks — we’ll be in touch.';
+            formMessage.textContent = resultText || 'Thanks — we’ll be in touch.';
             formMessage.style.color = 'var(--green)';
           } else {
-            formMessage.textContent = 'Submission failed. Please try again.';
+            formMessage.textContent = resultText || 'Submission failed. Please try again.';
             formMessage.style.color = '#b91c1c';
           }
         } catch (error) {
