@@ -19,6 +19,12 @@ function logContactFailure($message, $details = '') {
     error_log($entry . PHP_EOL, 3, __DIR__ . '/contact-errors.log');
 }
 
+function appendMailLog($subject, $body, $headers, $to) {
+    $timestamp = date('c');
+    $entry = "[$timestamp]\nTo: $to\nSubject: $subject\nHeaders:\n$headers\nBody:\n$body\n---\n";
+    file_put_contents(__DIR__ . '/mail_log.txt', $entry, FILE_APPEND | LOCK_EX);
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     logContactFailure('Method not allowed.');
     sendJsonResponse(false, 'Method not allowed.', 405);
@@ -47,9 +53,19 @@ $headers = "From: OCAN Energy <{$fromAddress}>\r\n";
 $headers .= "Reply-To: {$email}\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-if (mail($to, $subject, $body, $headers)) {
+$attemptedMail = [
+    'to' => $to,
+    'subject' => $subject,
+    'body' => $body,
+    'headers' => $headers,
+];
+
+$sent = mail($to, $subject, $body, $headers);
+if ($sent) {
     sendJsonResponse(true, 'Thanks — we’ll be in touch.');
 }
 
-logContactFailure('mail() failed.', 'to=' . $to . '; from=' . $fromAddress . '; email=' . $email);
-sendJsonResponse(false, 'Submission failed. Please try again.', 500);
+appendMailLog($subject, $body, $headers, $to);
+$reason = 'mail() returned false';
+logContactFailure('mail() failed.', 'to=' . $to . '; from=' . $fromAddress . '; email=' . $email . '; reason=' . $reason);
+sendJsonResponse(false, 'Mail failed: ' . $reason, 500);
